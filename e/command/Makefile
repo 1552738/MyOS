@@ -12,7 +12,7 @@ CFLAGS		= -I ../include/ -c -fno-builtin -fno-stack-protector -Wall
 LDFLAGS		= -Ttext 0x1000
 DASMFLAGS	= -D
 LIB		= ../lib/orangescrt.a
-BIN		= echo pwd calculator
+BIN		= echo pwd calculator saolei
 
 # All Phony Targets
 .PHONY : everything final clean realclean disasm all install
@@ -45,6 +45,12 @@ calculator.o: calculator.c ../include/type.h ../include/stdio.h
 	$(CC) $(CFLAGS) -o $@ $<
 
 calculator : calculator.o start.o $(LIB)
+	$(LD) $(LDFLAGS) -o $@ $?
+
+saolei.o: saolei.c ../include/type.h ../include/stdio.h
+	$(CC) $(CFLAGS) -o $@ $<
+
+saolei : saolei.o start.o $(LIB)
 	$(LD) $(LDFLAGS) -o $@ $?
 
 echo.o: echo.c ../include/type.h ../include/stdio.h
