@@ -32,6 +32,13 @@ int getNum(char * bufr)
 	return res;
 }
 
+void ClearArr(char *arr, int length)
+{
+    int i;
+    for (i = 0; i < length; i++)
+        arr[i] = 0;
+}
+
 int main()
 {	
 	int i, flag = 1;
@@ -51,6 +58,7 @@ int main()
 		if (bufr[0] == 'q')
 			break;
 		num1 = getNum(bufr);
+		ClearArr(bufr, 128);
 		printf("num1: %d\n", num1);
 		
 		printf("Please input num2:");
@@ -58,6 +66,7 @@ int main()
 		if (bufr[0] == 'q')
 			break;
 		num2 = getNum(bufr);
+		ClearArr(bufr, 128);
 		printf("num2: %d\n", num2);
 		
 		printf("Please input op( + - * / ):");
@@ -91,6 +100,7 @@ int main()
 			default:
 				printf("No such command!\n");
 		}
+		ClearArr(bufr, 128);
 	}
 	return 0;
 }
