@@ -12,7 +12,7 @@ CFLAGS		= -I ../include/ -c -fno-builtin -fno-stack-protector -Wall
 LDFLAGS		= -Ttext 0x1000
 DASMFLAGS	= -D
 LIB		= ../lib/orangescrt.a
-BIN		= echo pwd calculator saolei calendar
+BIN		= echo pwd calculator saolei calendar fiveChess
 
 # All Phony Targets
 .PHONY : everything final clean realclean disasm all install
@@ -57,6 +57,12 @@ calendar.o: calendar.c ../include/type.h ../include/stdio.h
 	$(CC) $(CFLAGS) -o $@ $<
 
 calendar : calendar.o start.o $(LIB)
+	$(LD) $(LDFLAGS) -o $@ $?
+
+fiveChess.o: fiveChess.c ../include/type.h ../include/stdio.h
+	$(CC) $(CFLAGS) -o $@ $<
+
+fiveChess : fiveChess.o start.o $(LIB)
 	$(LD) $(LDFLAGS) -o $@ $?
 
 echo.o: echo.c ../include/type.h ../include/stdio.h
