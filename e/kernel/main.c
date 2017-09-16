@@ -17,6 +17,7 @@
 #include "global.h"
 #include "proto.h"
 
+
 /*****************************************************************************
  *                               kernel_main
  *****************************************************************************/
@@ -239,9 +240,6 @@ void shabby_shell(const char * tty_name)
 	assert(fd_stdout == 1);
 
 	char rdbuf[128];
-	welcome();
-	printf("press any key to start:\n");
-	int r = read(0, rdbuf, 70);
 
 	while (1) {
 		write(1, "$ ", 2);
@@ -383,23 +381,5 @@ PUBLIC void panic(const char *fmt, ...)
 
 	/* should never arrive here */
 	__asm__ __volatile__("ud2");
-}
-PUBLIC void welcome()
-{
-
-	printf("              ******************************************************\n");
-	printf("              *                                                    *\n");
-	printf("              *        Welcome to Our Operating System             *\n");
-	printf("              *                                                    *\n");
-	printf("              ******************************************************\n");
-	printf("              *                                                    *\n");
-	printf("              *                                                    *\n");
-	printf("              *                1552733 Zhao Liang                  *\n");
-	printf("              *                1552738   Li Hang                   *\n");
-	printf("              *                                                    *\n");
-	printf("              *                                                    *\n");
-	printf("              *                                                    *\n");
-	printf("              ******************************************************\n\n");
-	milli_delay(8000);
 }
 
